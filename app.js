@@ -66,13 +66,6 @@ function nextQuestion(){
 
     i++;
 
-    if (i == 5) {
-        document.querySelector(".level1").style.display = "none";
-        document.querySelector(".copyright").style.display = "none";
-        document.querySelector("#startButton").style.display = "none";
-        document.querySelector("#nextLevelBtn").style.display = "flex";
-    }
-
     if (ans1.checked === true){
         ans1.checked = false;
     };
