@@ -66,12 +66,22 @@ function nextQuestion(){
 
     i++;
 
+    if (i == 5) {
+        document.querySelector(".level1").style.display = "none";
+        document.querySelector(".copyright").style.display = "none";
+        document.querySelector("#startButton").style.display = "none";
+        document.querySelector("#nextLevelBtn").style.display = "flex";
+    }
+
     if (ans1.checked === true){
         ans1.checked = false;
     };
     if (ans2.checked === true){
         ans2.checked = false;
-    };
+        let score = 1;
+        document.getElementById('score').innerHTML = "Your Score is: " + score;
+        score += 1;
+    }; 
     if (ans3.checked === true){
         ans3.checked = false;
     };
