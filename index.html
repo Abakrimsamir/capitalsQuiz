@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script async src="app.js"></script>
+    <title>Capital challenge</title>
+</head>
+<body>
+    <main>
+        <div id="startButton">
+            <h2>Capitals Challenge</h2>
+            <p>I challenge you to Know More than three capitals of deferent Countries</p>
+            <button id="start" onclick="startQuiz()">Start Quiz</button>
+        </div>
+        <div id="nextLevelBtn">
+            <h2>🔥Congratulations!🔥</h2>
+            <p>Your Score is : </p>
+            <button id="level2" onclick="startQuiz()">Next Level</button>
+        </div>
+        <div class="level1">
+            <header>
+                <h1 class="logo">Level 1</h1>
+            </header>
+            <section>
+                <div class="levels">
+                    <div class="timerDown">
+                        <img width="25px" src="./alarm-clock.png" alt="timer">
+                        <p id="level"></p>
+                    </div>
+                    <span id="fiveQuestion">Question 1/5</span>
+                </div>
+                <div class="questions">
+                    <h1 id="question">Question</h1>
+                    <div class="answers">
+                        <div class="agdir">
+                            <input type="radio" name="capital" id="ans1">
+                            <label for="ans1" class="answer1">Answer</label>
+                        </div>
+                        <div class="rabat">
+                            <input type="radio" name="capital" id="ans2">
+                            <label for="ans2" class="answer2">Answer</label>
+                        </div>
+                        <div class="fes">
+                            <input type="radio" name="capital" id="ans3">
+                            <label for="ans3" class="answer3">Answer</label>
+                        </div>
+                    </div>
+                </div>
+                <button id="next" onclick="nextQuestion()">Next</button>
+            </section>
+        </div>
+        <p class="copyright">Copyright &copy; 2023 by Samir Abakrim</p>
+    </main>
+</body>
+</html>
