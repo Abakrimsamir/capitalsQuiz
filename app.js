@@ -29,6 +29,12 @@ const levels1 = [
         b : 'Montreal',
         c : 'Vancouver',
     },
+    {
+        question1 : 'What is Capital of Canada?',
+        a : 'Toronto',
+        b : 'Montreal',
+        c : 'Vancouver',
+    },
 ];
 
 let start = document.querySelector('#start');
@@ -66,7 +72,7 @@ function nextQuestion(){
 
     i++;
 
-    if (i == 5) {
+    if (i == 6) {
         document.querySelector(".level1").style.display = "none";
         document.querySelector(".copyright").style.display = "none";
         document.querySelector("#startButton").style.display = "none";
@@ -79,9 +85,16 @@ function nextQuestion(){
     if (ans2.checked === true){
         ans2.checked = false;
         let score = 1;
-        document.getElementById('score').innerHTML = "Your Score is: " + score;
+        document.getElementById('congrateOrOops').innerHTML = "🔥Congratulations!🔥";
+        document.getElementById('score').innerHTML = "Your Score is: " + score + "/5"; 
+        document.getElementById('level2').innerHTML = "Next Level";
         score += 1;
-    }; 
+    }else{
+        let score = 0;
+        document.getElementById('congrateOrOops').innerHTML = "Ooops!";
+        document.getElementById('score').innerHTML = "Your Score is: " + score + "/5";
+        document.getElementById('level2').innerHTML = "Restart";
+    }
     if (ans3.checked === true){
         ans3.checked = false;
     };
@@ -112,5 +125,10 @@ start.addEventListener("click", function() {
     timeleft = 10;
 });
 
-
+function startNextLevel(){
+    document.querySelector(".level1").style.display = "flex";
+    document.querySelector(".copyright").style.display = "flex";
+    document.querySelector("#startButton").style.display = "none";
+    document.querySelector("#nextLevelBtn").style.display = "none";
+}
 
