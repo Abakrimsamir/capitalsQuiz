@@ -1,39 +1,38 @@
 const levels1 = [
     {
-        question1 : 'What is Capital of Morocco?',
-        a : 'Agadir',
-        b : 'Rabat',
-        c : 'CasaBlanca',
+        question1: 'What is Capital of Morocco?',
+        a: 'Agadir',
+        b: 'Rabat',
+        c: 'CasaBlanca',
+        correct: 'b',
     },
     {
-        question1 : 'What is Capital of United State?',
-        a : 'Washington',
-        b : 'New York',
-        c : 'California',
+        question1: 'What is Capital of United State?',
+        a: 'Washington',
+        b: 'New York',
+        c: 'California',
+        correct: 'a',
     },
     {
-        question1 : 'What is Capital of Spain?',
-        a : 'Barsalona',
-        b : 'Seville',
-        c : 'Madrid',
+        question1: 'What is Capital of Spain?',
+        a: 'Barsalona',
+        b: 'Seville',
+        c: 'Madrid',
+        correct: 'c',
     },
     {
-        question1 : 'What is Capital of France?',
-        a : 'Paris',
-        b : 'Marseille',
-        c : 'lyon',
+        question1: 'What is Capital of France?',
+        a: 'Paris',
+        b: 'Marseille',
+        c: 'lyon',
+        correct: 'a',
     },
     {
-        question1 : 'What is Capital of Canada?',
-        a : 'Toronto',
-        b : 'Montreal',
-        c : 'Vancouver',
-    },
-    {
-        question1 : 'What is Capital of Canada?',
-        a : 'Toronto',
-        b : 'Montreal',
-        c : 'Vancouver',
+        question1: 'What is Capital of Canada?',
+        a: 'Toronto',
+        b: 'Montreal',
+        c: 'Vancouver',
+        correct: 'b',
     },
 ];
 
@@ -45,9 +44,11 @@ let answer2 = document.querySelector('.answer2');
 let answer3 = document.querySelector('.answer3');
 let level = document.querySelector('#level');
 let fiveQuestion = document.querySelector('#fiveQuestion');
-let ans1 = document.querySelector('#ans1');
-let ans2 = document.querySelector('#ans2');
-let ans3 = document.querySelector('#ans3');
+let allAnswers = document.querySelectorAll('.allAnswers');
+let currentQuiz = 0;
+let score = 0;
+let questionNumber = 1;
+
 
 
 function startQuiz() {
@@ -55,64 +56,85 @@ function startQuiz() {
     document.querySelector(".copyright").style.display = "flex";
     document.querySelector("#startButton").style.display = "none";
 };
-function fistQuestion(q1, a, b, c){
-    question.innerHTML = q1;
-    answer1.innerHTML = a;
-    answer2.innerHTML = b;
-    answer3.innerHTML = c;
+
+
+// function startNextLevel(){
+//     document.querySelector(".level1").style.display = "flex";
+//     document.querySelector(".copyright").style.display = "flex";
+//     document.querySelector("#startButton").style.display = "none";
+//     document.querySelector("#nextLevelBtn").style.display = "none";
+// }
+
+
+
+function loadQuiz() {
+    deselectAnswers()
+    const currentQuizData = levels1[currentQuiz];
+    question.innerText = currentQuizData.question1;
+    answer1.innerText = currentQuizData.a;
+    answer2.innerText = currentQuizData.b;
+    answer3.innerText = currentQuizData.c;
+    fiveQuestion.innerHTML = "Question " + questionNumber + "/5";
 }
-fistQuestion(levels1[0].question1 ,levels1[0].a ,levels1[0].b ,levels1[0].c);
-
-let i = 1;
-function nextQuestion(){
-    question.innerHTML = levels1[i].question1;
-    answer1.innerHTML = levels1[i].a;
-    answer2.innerHTML = levels1[i].b;
-    answer3.innerHTML = levels1[i].c;
-
-    i++;
-
-    if (i == 6) {
-        document.querySelector(".level1").style.display = "none";
-        document.querySelector(".copyright").style.display = "none";
-        document.querySelector("#startButton").style.display = "none";
-        document.querySelector("#nextLevelBtn").style.display = "flex";
-    }
-
-    if (ans1.checked === true){
-        ans1.checked = false;
-    };
-    if (ans2.checked === true){
-        ans2.checked = false;
-        let score = 1;
-        document.getElementById('congrateOrOops').innerHTML = "🔥Congratulations!🔥";
-        document.getElementById('score').innerHTML = "Your Score is: " + score + "/5"; 
-        document.getElementById('level2').innerHTML = "Next Level";
-        score += 1;
-    }else{
-        let score = 0;
-        document.getElementById('congrateOrOops').innerHTML = "Ooops!";
-        document.getElementById('score').innerHTML = "Your Score is: " + score + "/5";
-        document.getElementById('level2').innerHTML = "Restart";
-    }
-    if (ans3.checked === true){
-        ans3.checked = false;
-    };
+loadQuiz()
+function deselectAnswers() {
+    allAnswers.forEach(allAnswer => allAnswer.checked = false);
 }
+function getSelected() {
+    let answer;
+    allAnswers.forEach(allAnswer => {
+        if(allAnswer) {
+            answer = allAnswer.id;
+        }
+    })
+    return answer;
+}
+function nextQuestion() {
+    const answer = getSelected()
+    if(answer) {
+       if(answer === levels1[currentQuiz].correct) {
+          score++;
+       }   
+
+       questionNumber++;
+       fiveQuestion.innerHTML = "Question " + questionNumber + "/5";
+    
+       currentQuiz++;
+       
+       if(currentQuiz < levels1.length) {
+           loadQuiz();
+       } else {
+           document.querySelector(".level1").style.display = "none";
+           document.querySelector(".copyright").style.display = "none";
+           document.getElementById("nextLevelBtn").style.display = "flex";
+           document.getElementById('score').innerHTML = 'You answered ' + score + '/5';
+           document.getElementById('level2').innerHTML = 'Next Level';
+          
+       }
+    }
+};
+
+
+
+
+
 
 var timeleft;
 let downloadTimer = setInterval(function(){
 
   if(timeleft >= 0){
-    setInterval(timeleft);
-    document.getElementById("level").innerHTML = timeleft;
+        setInterval(timeleft);
+        document.getElementById("level").innerHTML = timeleft;
   };
+
   timeleft --;
-  if (timeleft == -1) {
-    setInterval(timeleft);
-    timeleft = 10;
-    nextQuestion() = onclick;
-  };
+
+    if (timeleft == -1) {
+        setInterval(timeleft);
+        timeleft = 10;
+        nextQuestion() = onclick;
+    };
+
 }, 1000);
 
 next.addEventListener("click", function() {
@@ -124,11 +146,3 @@ start.addEventListener("click", function() {
     setInterval(timeleft);
     timeleft = 10;
 });
-
-function startNextLevel(){
-    document.querySelector(".level1").style.display = "flex";
-    document.querySelector(".copyright").style.display = "flex";
-    document.querySelector("#startButton").style.display = "none";
-    document.querySelector("#nextLevelBtn").style.display = "none";
-}
-
