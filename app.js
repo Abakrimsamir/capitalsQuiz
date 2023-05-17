@@ -66,7 +66,6 @@ function startQuiz() {
 // }
 
 
-
 function loadQuiz() {
     deselectAnswers()
     const currentQuizData = levels1[currentQuiz];
@@ -95,12 +94,12 @@ function nextQuestion() {
        if(answer === levels1[currentQuiz].correct) {
           score++;
        }   
-
+       
        questionNumber++;
        fiveQuestion.innerHTML = "Question " + questionNumber + "/5";
     
        currentQuiz++;
-       
+
        if(currentQuiz < levels1.length) {
            loadQuiz();
        } else {
@@ -146,3 +145,5 @@ start.addEventListener("click", function() {
     setInterval(timeleft);
     timeleft = 10;
 });
+
+

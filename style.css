@@ -6,7 +6,9 @@
     font-family: 'Roboto Mono';
 }
 body{
-    background: #000;
+    background-image: url('./bg.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 main{
     display: flex;
@@ -38,19 +40,18 @@ main{
 #nextLevelBtn{
     display: none;
 }
-#startButton p{
-    color: #fff;
-    opacity: 0.7;
-}
-#nextLevelBtn p{
-    color: #fff;
-    opacity: 0.7;
-    font-size: 20px;
+#nextLevelBtn p, #startButton p{
+    color: #000;
+    opacity: 0.4;
+    font-size: 18px;
+    line-height: 30px;
+    width: 40rem;
+    text-align: center;
 }
 .logo, h2{
     color: #54548f;
     text-align: center;
-    font-size: 35px;
+    font-size: 30px;
     padding-bottom: 25px;
 }
 #start, #level2{
@@ -137,7 +138,7 @@ label{
 }
 .copyright{
     display: none;
-    color: #fff;
+    color: #000000;
     margin: 30px 0;
     font-size: 15px;
     opacity: 0.6;
