@@ -46,10 +46,8 @@ let level = document.querySelector('#level');
 let fiveQuestion = document.querySelector('#fiveQuestion');
 let allAnswers = document.querySelectorAll('.allAnswers');
 let currentQuiz = 0;
-var score = 0;
 let questionNumber = 1;
-
-
+let score = 0;
 
 function startQuiz() {
     document.querySelector(".level1").style.display = "flex";
@@ -81,7 +79,7 @@ function answerSelected() {
     let answer;
     allAnswers.forEach(allAnswer => {
         if(allAnswer) {
-            answer = allAnswer.id;
+            answer = allAnswer;
         }
     })
     return answer;
@@ -89,34 +87,27 @@ function answerSelected() {
 function nextQuestion() {
     const answer = answerSelected();
     if(answer) {
-       if(answer === levels1[currentQuiz].correct){
-        score++;
-       }
- 
-       questionNumber++;
-       fiveQuestion.innerHTML = "Question " + questionNumber + "/5";
+        if(answer === levels1[currentQuiz].correct){
+            score++;
+        }
+        
+        questionNumber++;
+        fiveQuestion.innerHTML = "Question " + questionNumber + "/5";
     
-       currentQuiz++;
+        currentQuiz++;
 
-       if(currentQuiz < levels1.length){
+        if(currentQuiz < levels1.length){
            loadQuiz();
         }else {
            document.querySelector(".level1").style.display = "none";
            document.querySelector(".copyright").style.display = "none";
            document.getElementById("nextLevelBtn").style.display = "flex";
-           document.getElementById('score').innerHTML = 'You answered ' + score + '/5';
+           document.getElementById("level").style.display = "none";   
+           document.getElementById('scores').innerHTML = 'You answered ' + score + '/5';
            document.getElementById('level2').innerHTML = 'Next Level';
-       }
+        }
     }
 };
-// function restart() {
-//     if (score <= 2){
-//         document.getElementById('level2').innerHTML = 'Restart';
-//     }
-//     if (score >= 3){
-//         document.getElementById('level2').innerHTML = 'Next Level';
-//     }
-// }
 
 
 var timeleft;
@@ -146,8 +137,3 @@ start.addEventListener("click", function() {
     setInterval(timeleft);
     timeleft = 10;
 });
-
-
-if (allAnswers == le) {
-    
-}
