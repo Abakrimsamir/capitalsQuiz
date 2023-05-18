@@ -26,7 +26,7 @@ main{
     padding: 30px;
     margin : auto;
     border-radius: 20px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.7);
 }
 #startButton, #nextLevelBtn{
     position: absolute;

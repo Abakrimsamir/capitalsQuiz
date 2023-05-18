@@ -46,7 +46,7 @@ let level = document.querySelector('#level');
 let fiveQuestion = document.querySelector('#fiveQuestion');
 let allAnswers = document.querySelectorAll('.allAnswers');
 let currentQuiz = 0;
-let score = 0;
+var score = 0;
 let questionNumber = 1;
 
 
@@ -57,7 +57,6 @@ function startQuiz() {
     document.querySelector("#startButton").style.display = "none";
 };
 
-
 // function startNextLevel(){
 //     document.querySelector(".level1").style.display = "flex";
 //     document.querySelector(".copyright").style.display = "flex";
@@ -65,21 +64,20 @@ function startQuiz() {
 //     document.querySelector("#nextLevelBtn").style.display = "none";
 // }
 
-
 function loadQuiz() {
     deselectAnswers()
     const currentQuizData = levels1[currentQuiz];
-    question.innerText = currentQuizData.question1;
-    answer1.innerText = currentQuizData.a;
-    answer2.innerText = currentQuizData.b;
-    answer3.innerText = currentQuizData.c;
+    question.innerHTML = currentQuizData.question1;
+    answer1.innerHTML = currentQuizData.a;
+    answer2.innerHTML = currentQuizData.b;
+    answer3.innerHTML = currentQuizData.c;
     fiveQuestion.innerHTML = "Question " + questionNumber + "/5";
 }
 loadQuiz()
 function deselectAnswers() {
     allAnswers.forEach(allAnswer => allAnswer.checked = false);
 }
-function getSelected() {
+function answerSelected() {
     let answer;
     allAnswers.forEach(allAnswer => {
         if(allAnswer) {
@@ -89,33 +87,36 @@ function getSelected() {
     return answer;
 }
 function nextQuestion() {
-    const answer = getSelected()
+    const answer = answerSelected();
     if(answer) {
-       if(answer === levels1[currentQuiz].correct) {
-          score++;
-       }   
-       
+       if(answer === levels1[currentQuiz].correct){
+        score++;
+       }
+ 
        questionNumber++;
        fiveQuestion.innerHTML = "Question " + questionNumber + "/5";
     
        currentQuiz++;
 
-       if(currentQuiz < levels1.length) {
+       if(currentQuiz < levels1.length){
            loadQuiz();
-       } else {
+        }else {
            document.querySelector(".level1").style.display = "none";
            document.querySelector(".copyright").style.display = "none";
            document.getElementById("nextLevelBtn").style.display = "flex";
            document.getElementById('score').innerHTML = 'You answered ' + score + '/5';
            document.getElementById('level2').innerHTML = 'Next Level';
-          
        }
     }
 };
-
-
-
-
+// function restart() {
+//     if (score <= 2){
+//         document.getElementById('level2').innerHTML = 'Restart';
+//     }
+//     if (score >= 3){
+//         document.getElementById('level2').innerHTML = 'Next Level';
+//     }
+// }
 
 
 var timeleft;
@@ -147,3 +148,6 @@ start.addEventListener("click", function() {
 });
 
 
+if (allAnswers == le) {
+    
+}
